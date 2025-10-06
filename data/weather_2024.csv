@@ -79,7 +79,7 @@
 # S         : Sneeuw 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Snow 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
 # O         : Onweer 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Thunder  0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
 # Y         : IJsvorming 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Ice formation 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
-# STN,YYYYMMDD,HH,   DD,   FH,   FF,   FX,    T, T10N,   TD,   SQ,    Q,   DR,   RH,    P,   VV,    N,    U,   WW,   IX,    M,    R,    S,    O,    Y
+STN,YYYYMMDD,HH,   DD,   FH,   FF,   FX,    T, T10N,   TD,   SQ,    Q,   DR,   RH,    P,   VV,    N,    U,   WW,   IX,    M,    R,    S,    O,    Y
   209,20240101,   24,  160,  100,  110,  130,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
   209,20240102,   24,  270,  190,  190,  250,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
   215,20240101,   24,  160,   60,   70,  110,   73,   48,   62,    0,    0,   10,   11, 9976,   61,    8,   92,   82,    7,    0,    1,    0,    0,    0

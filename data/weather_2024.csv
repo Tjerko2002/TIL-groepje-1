@@ -1,0 +1,174 @@
+# Opmerking: door stationsverplaatsingen en veranderingen in waarneemmethodieken zijn deze tijdreeksen van uurwaarden mogelijk inhomogeen! Dat betekent dat deze reeks van gemeten waarden niet geschikt is voor trendanalyse. Voor studies naar klimaatverandering verwijzen we naar de gehomogeniseerde dagreeksen <http://www.knmi.nl/nederland-nu/klimatologie/daggegevens> of de Centraal Nederland Temperatuur <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/centraal-nederland-temperatuur-cnt>.
+# 
+# SOURCE: ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE (KNMI)
+# Comment: These time series are inhomogeneous because of station relocations and changes in observation techniques. As a result these series are not suitable for trend analysis. For climate change studies we refer to the homogenized series of daily data <http://www.knmi.nl/nederland-nu/klimatologie/daggegevens> or the Central Netherlands Temperature <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/centraal-nederland-temperatuur-cnt>.
+# 
+# STN         LON(east)   LAT(north)  ALT(m)      NAME
+# 209         4.518       52.465      0.00        IJmond      
+# 210         4.430       52.171      -0.20       Valkenburg Zh
+# 215         4.437       52.141      -1.10       Voorschoten 
+# 225         4.555       52.463      4.40        IJmuiden    
+# 235         4.781       52.928      1.20        De Kooy     
+# 240         4.790       52.318      -3.30       Schiphol    
+# 242         4.921       53.241      10.80       Vlieland    
+# 248         5.174       52.634      0.80        Wijdenes    
+# 249         4.979       52.644      -2.40       Berkhout    
+# 251         5.346       53.392      0.70        Hoorn Terschelling
+# 257         4.603       52.506      8.50        Wijk aan Zee
+# 258         5.401       52.649      7.30        Houtribdijk 
+# 260         5.180       52.100      1.90        De Bilt     
+# 265         5.274       52.130      13.90       Soesterberg 
+# 267         5.384       52.898      -1.30       Stavoren    
+# 269         5.520       52.458      -3.70       Lelystad    
+# 270         5.752       53.224      1.20        Leeuwarden  
+# 273         5.888       52.703      -3.30       Marknesse   
+# 275         5.873       52.056      48.20       Deelen      
+# 277         6.200       53.413      2.90        Lauwersoog  
+# 278         6.259       52.435      3.60        Heino       
+# 279         6.574       52.750      15.80       Hoogeveen   
+# 280         6.585       53.125      5.20        Eelde       
+# 283         6.657       52.069      29.10       Hupsel      
+# 285         6.399       53.575      0.00        Huibertgat  
+# 286         7.150       53.196      -0.20       Nieuw Beerta
+# 290         6.891       52.274      34.80       Twenthe     
+# 308         3.379       51.381      0.00        Cadzand     
+# 310         3.596       51.442      8.00        Vlissingen  
+# 311         3.672       51.379      0.00        Hoofdplaat  
+# 312         3.622       51.768      0.00        Oosterschelde
+# 313         3.242       51.505      0.00        Vlakte van De Raan
+# 315         3.998       51.447      0.00        Hansweert   
+# 316         3.694       51.657      0.00        Schaar      
+# 319         3.861       51.226      1.70        Westdorpe   
+# 323         3.884       51.527      1.40        Wilhelminadorp
+# 324         4.006       51.596      0.00        Stavenisse  
+# 330         4.122       51.992      11.90       Hoek van Holland
+# 331         4.193       51.480      0.00        Tholen      
+# 340         4.342       51.449      19.20       Woensdrecht 
+# 343         4.313       51.893      3.50        Rotterdam Geulhaven
+# 344         4.447       51.962      -4.30       Rotterdam   
+# 348         4.926       51.970      -0.70       Cabauw Mast 
+# 350         4.936       51.566      14.90       Gilze-Rijen 
+# 356         5.146       51.859      0.70        Herwijnen   
+# 370         5.377       51.451      22.60       Eindhoven   
+# 375         5.707       51.659      22.00       Volkel      
+# 377         5.763       51.198      30.00       Ell         
+# 380         5.762       50.906      114.30      Maastricht  
+# 391         6.197       51.498      19.50       Arcen       
+# 392         6.056189    51.486836   21.88       Horst       
+# YYYYMMDD  : datum (YYYY=jaar;MM=maand;DD=dag)
+# HH        : tijd (HH=uur; UT.12 UT=13 MET; 14 MEZT. Uurvak 05 loopt van 04.00 UT tot 5.00 UT
+# DD        : Windrichting (in graden) gemiddeld over de laatste 10 minuten van het afgelopen uur (360=noord; 90=oost; 180=zuid; 270=west; 0=windstil 990=veranderlijk. Zie http://www.knmi.nl/kennis-en-datacentrum/achtergrond/klimatologische-brochures-en-boeken / Mean wind direction (in degrees) during the 10-minute period preceding the time of observation (360=north; 90=east; 180=south; 270=west; 0=calm 990=variable)
+# FH        : Uurgemiddelde windsnelheid (in 0.1 m/s). Zie http://www.knmi.nl/kennis-en-datacentrum/achtergrond/klimatologische-brochures-en-boeken / Hourly mean wind speed (in 0.1 m/s)
+# FF        : Windsnelheid (in 0.1 m/s) gemiddeld over de laatste 10 minuten van het afgelopen uur / Mean wind speed (in 0.1 m/s) during the 10-minute period preceding the time of observation
+# FX        : Hoogste windstoot (in 0.1 m/s) over het afgelopen uurvak / Maximum wind gust (in 0.1 m/s) during the hourly division
+# T         : Temperatuur (in 0.1 graden Celsius) op 1.50 m hoogte tijdens de waarneming / Temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation
+# T10N      : Minimumtemperatuur (in 0.1 graden Celsius) op 10 cm hoogte in de afgelopen 6 uur / Minimum temperature (in 0.1 degrees Celsius) at 0.1 m in the preceding 6-hour period
+# TD        : Dauwpuntstemperatuur (in 0.1 graden Celsius) op 1.50 m hoogte tijdens de waarneming / Dew point temperature (in 0.1 degrees Celsius) at 1.50 m at the time of observation
+# SQ        : Duur van de zonneschijn (in 0.1 uren) per uurvak; berekend uit globale straling  (-1 for <0.05 uur) / Sunshine duration (in 0.1 hour) during the hourly division; calculated from global radiation (-1 for <0.05 hour)
+# Q         : Globale straling (in J/cm2) per uurvak / Global radiation (in J/cm2) during the hourly division
+# DR        : Duur van de neerslag (in 0.1 uur) per uurvak / Precipitation duration (in 0.1 hour) during the hourly division
+# RH        : Uursom van de neerslag (in 0.1 mm) (-1 voor <0.05 mm) / Hourly precipitation amount (in 0.1 mm) (-1 for <0.05 mm)
+# P         : Luchtdruk (in 0.1 hPa) herleid naar zeeniveau; tijdens de waarneming / Air pressure (in 0.1 hPa) reduced to mean sea level; at the time of observation
+# VV        : Horizontaal zicht tijdens de waarneming (0=minder dan 100m; 1=100-200m; 2=200-300m;...; 49=4900-5000m; 50=5-6km; 56=6-7km; 57=7-8km; ...; 79=29-30km; 80=30-35km; 81=35-40km;...; 89=meer dan 70km) / Horizontal visibility at the time of observation (0=less than 100m; 1=100-200m; 2=200-300m;...; 49=4900-5000m; 50=5-6km; 56=6-7km; 57=7-8km; ...; 79=29-30km; 80=30-35km; 81=35-40km;...; 89=more than 70km)
+# N         : Bewolking (bedekkingsgraad van de bovenlucht in achtsten); tijdens de waarneming (9=bovenlucht onzichtbaar) / Cloud cover (in octants); at the time of observation (9=sky invisible)
+# U         : Relatieve vochtigheid (in procenten) op 1.50 m hoogte tijdens de waarneming / Relative atmospheric humidity (in percents) at 1.50 m at the time of observation
+# WW        : Weercode (00-99); visueel(WW) of automatisch(WaWa) waargenomen; voor het actuele weer of het weer in het afgelopen uur. Zie http://bibliotheek.knmi.nl/scholierenpdf/weercodes_Nederland / Present weather code (00-99); description for the hourly division.
+# IX        : Weercode indicator voor de wijze van waarnemen op een bemand of automatisch station (1=bemand gebruikmakend van code uit visuele waarnemingen; 2;3=bemand en weggelaten (geen belangrijk weersverschijnsel; geen gegevens); 4=automatisch en opgenomen (gebruikmakend van code uit visuele waarnemingen); 5;6=automatisch en weggelaten (geen belangrijk weersverschijnsel; geen gegevens); 7=automatisch gebruikmakend van code uit automatische waarnemingen) / Indicator present weather code (1=manned and recorded (using code from visual observations); 2;3=manned and omitted (no significant weather phenomenon to report; not available); 4=automatically recorded (using code from visual observations); 5;6=automatically omitted (no significant weather phenomenon to report; not available); 7=automatically set (using code from automated observations)
+# M         : Mist 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Fog 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
+# R         : Regen 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Rainfall 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
+# S         : Sneeuw 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Snow 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
+# O         : Onweer 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Thunder  0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
+# Y         : IJsvorming 0=niet voorgekomen; 1=wel voorgekomen in het voorgaande uur en/of tijdens de waarneming / Ice formation 0=no occurrence; 1=occurred during the preceding hour and/or at the time of observation
+# STN,YYYYMMDD,HH,   DD,   FH,   FF,   FX,    T, T10N,   TD,   SQ,    Q,   DR,   RH,    P,   VV,    N,    U,   WW,   IX,    M,    R,    S,    O,    Y
+  209,20240101,   24,  160,  100,  110,  130,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  209,20240102,   24,  270,  190,  190,  250,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  215,20240101,   24,  160,   60,   70,  110,   73,   48,   62,    0,    0,   10,   11, 9976,   61,    8,   92,   82,    7,    0,    1,    0,    0,    0
+  215,20240102,   24,  270,  130,  120,  210,   98,   91,   73,    0,    0,    2,    5, 9852,   65,    8,   83,   23,    7,    0,    1,    0,    0,    0
+  225,20240101,   24,  150,   70,   80,  110,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  225,20240102,   24,  260,  200,  190,  270,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  235,20240101,   24,  150,   60,   70,   90,   65,   46,   53,    0,    0,   10,    5, 9975,   62,    8,   91,   61,    7,    0,    1,    0,    0,    0
+  235,20240102,   24,  260,  190,  180,  280,   83,   81,   70,    0,    0,    5,    3, 9793,   56,    8,   91,   52,    7,    0,    1,    0,    0,    0
+  240,20240101,   24,  150,   80,   80,  110,   68,   41,   62,    0,    0,   10,    6, 9980,   62,    8,   96,   81,    7,    0,    1,    0,    0,    0
+  240,20240102,   24,  260,  160,  170,  260,   97,   89,   64,    0,    0,    7,    4, 9836,   75,    8,   79,   23,    7,    0,    1,    0,    0,    0
+  242,20240101,   24,  170,   90,   90,  120,   68,   58,   52,     ,     ,     ,     , 9977,   63,    8,   89,   51,    7,    0,    1,    0,    0,    0
+  242,20240102,   24,  250,  240,  240,  310,   83,   82,   77,     ,     ,     ,     , 9756,   39,    8,   95,   52,    7,    0,    1,    0,    0,    0
+  248,20240101,   24,  150,   90,  100,  110,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  248,20240102,   24,  250,  140,  130,  240,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  249,20240101,   24,  150,   60,   60,  100,   67,   30,   58,    0,    0,   10,    7,     ,   61,     ,   94,   81,    7,    0,    1,    0,    0,    0
+  249,20240102,   24,  250,  170,  150,  250,   86,   80,   58,    0,    0,    9,    2,     ,   62,     ,   82,   51,    7,    0,    1,    0,    0,    0
+  251,20240101,   24,  180,   90,  100,  120,   69,   57,   51,    0,    0,    0,    0, 9985,   70,     ,   88,    0,    7,    0,    0,    0,    0,    0
+  251,20240102,   24,  250,  180,  190,  250,   86,   83,   80,    0,    0,    9,   10, 9743,   21,     ,   95,   53,    7,    0,    1,    0,    0,    0
+  257,20240101,   24,     ,     ,     ,     ,   68,   66,   60,    0,    0,   10,    8,     ,     ,     ,   94,     ,    6,     ,     ,     ,     ,     
+  257,20240102,   24,     ,     ,     ,     ,   93,   87,   57,    0,    0,    0,    0,     ,     ,     ,   78,     ,    6,     ,     ,     ,     ,     
+  258,20240101,   24,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  258,20240102,   24,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  260,20240101,   24,  150,   40,   50,   90,   68,   52,   61,    0,    0,   10,    9, 9992,   61,    8,   95,   57,    7,    0,    1,    0,    0,    0
+  260,20240102,   24,  240,   90,  100,  200,   98,   87,   74,    0,    0,    7,   14, 9845,   57,    8,   85,   62,    7,    0,    1,    0,    0,    0
+  267,20240101,   24,  160,   80,   80,  110,   64,   49,   54,    0,    0,    7,    3,     ,   63,    8,   93,   52,    7,    0,    1,    0,    0,    0
+  267,20240102,   24,  240,  190,  170,  260,   81,   78,   68,    0,    0,   10,    9,     ,   59,    8,   91,   51,    7,    0,    1,    0,    0,    0
+  269,20240101,   24,  160,   50,   50,   80,   65,   48,   55,    0,    0,   10,    6, 9996,   63,    8,   93,   82,    7,    0,    1,    0,    0,    0
+  269,20240102,   24,  250,  150,  150,  230,   92,   85,   68,    0,    0,    6,    7, 9824,   70,    8,   84,   23,    7,    0,    1,    0,    0,    0
+  270,20240101,   24,  170,   50,   60,   90,   60,   38,   42,    0,    0,    0,    0, 9994,   70,    0,   88,     ,    5,    0,    0,    0,    0,    0
+  270,20240102,   24,  240,  170,  180,  260,   80,   81,   76,    0,    0,   10,   12, 9760,   30,    8,   97,   58,    7,    0,    1,    0,    0,    0
+  273,20240101,   24,  160,   50,   50,   90,   62,   47,   50,    0,    0,    6,    3,     ,   65,     ,   91,   81,    7,    0,    1,    0,    0,    0
+  273,20240102,   24,  250,  120,  120,  210,   90,   84,   63,    0,    0,    9,    7,     ,   70,     ,   82,   57,    7,    0,    1,    0,    0,    0
+  275,20240101,   24,  150,   50,   50,   80,   63,   51,   56,    0,    0,   10,   13,10010,   60,    8,   95,   82,    7,    0,    1,    0,    0,    0
+  275,20240102,   24,  240,  110,  100,  210,   93,   90,   76,    0,    0,    9,   19, 9846,   50,    8,   88,   62,    7,    0,    1,    0,    0,    0
+  277,20240101,   24,  170,   60,   60,   90,   58,   51,   44,    0,    0,    0,    0,     ,     ,     ,   90,     ,    6,     ,     ,     ,     ,     
+  277,20240102,   24,  230,  150,  160,  250,   83,   81,   76,    0,    0,   10,   15,     ,     ,     ,   95,     ,    6,     ,     ,     ,     ,     
+  278,20240101,   24,  150,   30,   30,   60,   63,   46,   52,    0,    0,    8,    2,     ,     ,     ,   92,     ,    6,     ,     ,     ,     ,     
+  278,20240102,   24,  240,  120,  120,  200,  103,   94,   69,    0,    0,    0,   -1,     ,     ,     ,   79,     ,    6,     ,     ,     ,     ,     
+  279,20240101,   24,  180,   50,   50,   80,   60,   46,   41,    0,    0,    0,   -1,10014,   70,    7,   88,   81,    7,    0,    1,    0,    0,    0
+  279,20240102,   24,  240,  140,  160,  220,   92,   87,   64,    0,    0,   10,   10, 9808,   64,    8,   82,   61,    7,    0,    1,    0,    0,    0
+  280,20240101,   24,  170,   50,   50,   80,   55,   41,   35,    0,    0,    0,    0,10007,   70,    8,   87,     ,    5,    0,    0,    0,    0,    0
+  280,20240102,   24,  230,  160,  150,  230,   84,   80,   69,    0,    0,    9,   18, 9778,   50,    8,   90,   62,    7,    0,    1,    0,    0,    0
+  283,20240101,   24,  160,   40,   50,   80,   66,   37,   54,    0,    0,    8,    3,     ,     ,     ,   91,     ,    6,     ,     ,     ,     ,     
+  283,20240102,   24,  230,  110,  120,  190,  115,   99,   58,    0,    0,    0,    0,     ,     ,     ,   68,     ,    6,     ,     ,     ,     ,     
+  285,20240101,   24,  170,   90,   90,  110,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  285,20240102,   24,  230,  180,  180,  240,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  286,20240101,   24,  170,   50,   50,   70,   49,   43,   37,    0,    0,    0,    0,     ,     ,     ,   91,     ,    6,     ,     ,     ,     ,     
+  286,20240102,   24,  220,  160,  180,  250,   91,   83,   65,    0,    0,   10,   14,     ,     ,     ,   83,     ,    6,     ,     ,     ,     ,     
+  290,20240101,   24,  170,   40,   40,   70,   61,   39,   50,    0,    0,    9,    5,10025,   62,    8,   92,   51,    7,    0,    1,    0,    0,    0
+  290,20240102,   24,  240,  100,  110,  160,   97,   92,   73,    0,    0,    9,   15, 9835,   57,    8,   84,   58,    7,    0,    1,    0,    0,    0
+  308,20240101,   24,  180,   80,   80,  130,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  308,20240102,   24,  250,  170,  160,  220,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  310,20240101,   24,  160,  110,  120,  160,   84,   66,   72,    0,    0,   10,   27, 9960,   50,    8,   92,   81,    7,    0,    1,    0,    0,    0
+  310,20240102,   24,  230,  190,  190,  250,  108,   98,   75,    0,    0,    0,    0, 9879,   56,    8,   80,   10,    7,    0,    0,    0,    0,    0
+  312,20240101,   24,  160,  130,  130,  170,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  312,20240102,   24,  240,  160,  160,  220,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  313,20240101,   24,  170,  130,  140,  170,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  313,20240102,   24,  250,  170,  170,  220,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  315,20240101,   24,  160,  100,  110,  140,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  315,20240102,   24,  240,  160,  150,  220,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  316,20240101,   24,  170,  100,  100,  140,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  316,20240102,   24,  250,  170,  170,  230,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  319,20240101,   24,  170,   60,   60,  120,   81,   61,   73,    0,    0,   10,   29, 9971,   61,     ,   94,   61,    7,    0,    1,    0,    0,    0
+  319,20240102,   24,  250,  110,  120,  210,  114,   94,   73,    0,    0,    3,    5, 9896,   75,     ,   75,   23,    7,    0,    1,    0,    0,    0
+  323,20240101,   24,  160,   70,   70,  130,   79,   66,   72,    0,    0,   10,   30, 9966,     ,     ,   95,     ,    6,     ,     ,     ,     ,     
+  323,20240102,   24,  240,  150,  150,  230,  110,  102,   75,    0,    0,    0,    0, 9881,     ,     ,   78,     ,    6,     ,     ,     ,     ,     
+  324,20240101,   24,  160,   80,   90,  130,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  324,20240102,   24,  240,  160,  160,  220,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  330,20240101,   24,  160,  110,  120,  150,   76,   69,   68,    0,    0,   10,   20, 9967,     ,     ,   94,     ,    6,     ,     ,     ,     ,     
+  330,20240102,   24,  250,  170,  170,  250,  107,   93,   72,    0,    0,    7,    9, 9858,     ,     ,   78,     ,    6,     ,     ,     ,     ,     
+  340,20240101,   24,  170,   50,   40,  100,   79,   65,   68,     ,     ,   10,   24, 9981,   59,    8,   92,   62,    7,    0,    1,    0,    0,    0
+  340,20240102,   24,  240,  130,  130,  200,  111,  101,   61,     ,     ,    0,    0, 9886,   69,    7,   71,    1,    7,    0,    0,    0,    0,    0
+  343,20240101,   24,  160,   60,   60,  100,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  343,20240102,   24,  240,  130,  120,  210,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,     ,    6,     ,     ,     ,     ,     
+  344,20240101,   24,  160,   70,   70,  120,   74,   65,   64,    0,    0,   10,   17, 9977,   59,    8,   93,   62,    7,    0,    1,    0,    0,    0
+  344,20240102,   24,  240,  130,  140,  230,  111,   90,   65,    0,    0,    5,    2, 9855,   66,    8,   73,   23,    7,    0,    1,    0,    0,    0
+  348,20240101,   24,  150,   70,   70,   90,   70,   51,   63,    0,    0,   10,    6, 9988,   58,     ,   95,   62,    7,    0,    1,    0,    0,    0
+  348,20240102,   24,  240,  130,  140,  210,  108,   92,   73,    0,    0,    7,    9, 9847,   64,     ,   79,   51,    7,    0,    1,    0,    0,    0
+  350,20240101,   24,  170,   60,   60,   90,   73,   57,   64,    0,    0,   10,   13, 9997,   60,    8,   94,   82,    7,    0,    1,    0,    0,    0
+  350,20240102,   24,  240,  100,   90,  170,  119,  109,   51,    0,    0,    0,    0, 9877,   81,    8,   63,    2,    7,    0,    0,    0,    0,    0
+  356,20240101,   24,  160,   50,   60,   80,   69,   52,   61,    0,    0,   10,    8, 9994,     ,     ,   94,     ,    6,     ,     ,     ,     ,     
+  356,20240102,   24,  240,  150,  160,  220,  113,   95,   66,    0,    0,    3,    1, 9853,     ,     ,   73,     ,    6,     ,     ,     ,     ,     
+  370,20240101,   24,  170,   50,   60,   90,   75,   56,   61,    0,    0,   10,    6,10005,   65,    8,   91,   82,    7,    0,    1,    0,    0,    0
+  370,20240102,   24,  240,  120,  120,  210,  116,  106,   52,    0,    0,    0,    0, 9879,   80,    8,   64,    2,    7,    0,    0,    0,    0,    0
+  375,20240101,   24,  170,   50,   50,   80,   70,   54,   59,    0,    0,    9,    4,10011,   65,    8,   92,   57,    7,    0,    1,    0,    0,    0
+  375,20240102,   24,  240,  140,  140,  220,  117,  102,   54,    0,    0,    0,    0, 9865,   76,    8,   65,    2,    7,    0,    0,    0,    0,    0
+  377,20240101,   24,  180,   60,   60,   90,   77,   52,   60,    0,    0,    7,    5,     ,   70,    8,   88,   61,    7,    0,    1,    0,    0,    0
+  377,20240102,   24,  240,  110,  110,  190,  104,   98,   68,    0,    0,    1,    2,     ,   63,    8,   78,   61,    7,    0,    1,    0,    0,    0
+  380,20240101,   24,  190,   70,   60,  110,   75,   59,   59,    0,    0,   10,    7,10022,   70,    8,   90,   82,    7,    0,    1,    0,    0,    0
+  380,20240102,   24,  230,  100,  100,  180,  101,   95,   59,    0,    0,    0,    0, 9907,   75,    8,   75,    2,    7,    0,    0,    0,    0,    0
+  391,20240101,   24,  160,   30,   30,   70,   70,   52,   54,    0,    0,   10,    4,     ,     ,     ,   89,     ,    6,     ,     ,     ,     ,     
+  391,20240102,   24,  240,   80,   80,  160,  117,  106,   54,    0,    0,    0,    0,     ,     ,     ,   64,     ,    6,     ,     ,     ,     ,     

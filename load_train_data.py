@@ -10,4 +10,5 @@ df.head(50)
 df["ns_lines"].value_counts()
 
 df_new = df.groupby("ns_lines")
-df_new.get_group("Rotterdam-Breda (HSL)")
+ff = df_new.get_group("Rotterdam-Breda (HSL)")
+print(ff)

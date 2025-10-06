@@ -2,8 +2,6 @@ import geopandas
 import matplotlib.pyplot as plt
 import contextily as ctx
 
-# (Assumes you have the same 'df' as in the previous example)
-
 # 1. Convert the pandas DataFrame to a GeoDataFrame
 gdf = geopandas.GeoDataFrame(
     df_stations, geometry=geopandas.points_from_xy(df['LON(east)'], df['LAT(north)'])

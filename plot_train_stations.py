@@ -45,16 +45,8 @@ import os
 import plotly.graph_objects as go # Import graph_objects
 
 # --- 1. Load and Prepare Data ---
+df_stations = pd.read_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
 
-# Assume df_stations (weather stations) is already loaded.
-# For a runnable example, we'll create it:
-weather_data = {
-    'STN': [215, 235, 240, 249, 251, 260, 267],
-    'LON(east)': [4.437, 4.781, 4.790, 4.979, 5.346, 5.180, 5.384],
-    'LAT(north)': [52.141, 52.928, 52.318, 52.644, 53.392, 52.100, 52.898],
-    'NAME': ['Voorschoten', 'De Kooy', 'Schiphol', 'Berkhout', 'Hoorn Terschelling', 'De Bilt', 'Stavoren']
-}
-df_stations = pd.DataFrame(weather_data)
 
 # Load train station data
 filename = 'data/stations-2023-09.csv'

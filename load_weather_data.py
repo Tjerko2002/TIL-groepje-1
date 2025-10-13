@@ -2,8 +2,8 @@ import os
 import pandas as pd
 """This file opens and cleans the datasets for the weather data of KNMI. It stores the data as pandas dataframe in pickle format."""
 # Turn to true to overwrite the pickle file with updates.
-stations_to_pickle = False
-weather_to_pickle = False
+stations_to_parquet = True
+weather_to_parquet = True
 
 # Set the paths to the datafiles. 
 file_weather_stations = r"data\locations_weatherstations.csv"
@@ -32,8 +32,8 @@ valid_stations = set(df_weather["STN"])
 df_stations = df_stations[df_stations["STN"].isin(valid_stations)]
 
 # Save the valid stations as pickle file
-if stations_to_pickle == True:
-    df_stations.to_pickle(os.path.join(os.getcwd(),r"data\df_stations.pkl"))
+if stations_to_parquet == True:
+    df_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
 
 
 # Based on the train data, the weather stations Rotterdam and Gilze-Rijen have been chosen for the weather data.
@@ -51,5 +51,5 @@ df_rotterdam = pd.read_csv(
 )
 
 # Save the weather file as pickle file
-if weather_to_pickle == True:
-    df_rotterdam.to_pickle(os.path.join(os.getcwd(),r"data\df_weather_2024_rotterdam_gilze-rijen.pkl"))
+if weather_to_parquet == True:
+    df_rotterdam.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_2024_rotterdam_gilze-rijen.parquet"))

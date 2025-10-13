@@ -2,8 +2,9 @@ import os
 import pandas as pd
 """This file opens and cleans the datasets for the weather data of KNMI. It stores the data as pandas dataframe in pickle format."""
 # Turn to true to overwrite the pickle file with updates.
-stations_to_parquet = True
-weather_to_parquet = True
+stations_to_parquet = False
+weather_to_parquet = False
+weather_5_stations_to_parquet = True
 
 # Set the paths to the datafiles. 
 file_weather_stations = r"data\locations_weatherstations.csv"
@@ -11,6 +12,7 @@ file_path_stations = os.path.join(os.getcwd(),file_weather_stations)
 
 file_weather = r"data\weather_2024.csv"
 file_path_weather = os.path.join(os.getcwd(),file_weather)
+
 
 
 df_stations = pd.read_csv(file_path_stations)
@@ -31,7 +33,7 @@ valid_stations = set(df_weather["STN"])
 
 df_stations = df_stations[df_stations["STN"].isin(valid_stations)]
 
-# Save the valid stations as pickle file
+# Save the valid stations as parquet file
 if stations_to_parquet == True:
     df_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
 
@@ -50,6 +52,23 @@ df_rotterdam = pd.read_csv(
     na_values=["", " "],     
 )
 
-# Save the weather file as pickle file
+# Save the weather file as parquet file
 if weather_to_parquet == True:
     df_rotterdam.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_2024_rotterdam_gilze-rijen.parquet"))
+
+
+
+# New plan: 5 stations. 
+file_weather_5_stations = r"data\weatherdata_2024_5stations.txt"
+file_path_weather_5_stations = os.path.join(os.getcwd(),file_weather_5_stations)
+
+df_weather_5_stations = pd.read_csv(
+    file_path_weather_5_stations,
+    comment='#',        # ignore all lines starting with '#'
+    skipinitialspace=True,  # ignore extra spaces after commas
+    na_values=['', ' '],    # treat empty fields as NaN
+)
+
+if weather_5_stations_to_parquet == True:
+    df_weather_5_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet"))
+

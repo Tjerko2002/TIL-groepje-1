@@ -67,6 +67,3 @@ if weather_5_stations_to_parquet == True:
         na_values=['', ' '],    # treat empty fields as NaN
     )
     df_weather_5_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet"))
-
-df = pd.read_parquet(os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet"))
-print(df.describe())

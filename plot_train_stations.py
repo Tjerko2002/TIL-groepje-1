@@ -26,11 +26,11 @@ df_train = pd.read_csv(file_path) # Renamed to df_train for clarity
 fig = go.Figure()
 
 # Add the first trace: Weather Stations (Blue)
-fig.add_trace(go.Scattermapbox(
+fig.add_trace(go.Scattermap(
     lat=df_stations['LAT(north)'],
     lon=df_stations['LON(east)'],
     mode='markers',
-    marker=go.scattermapbox.Marker(
+    marker=go.scattermap.Marker(
         size=10,
         color='blue'
     ),
@@ -40,11 +40,11 @@ fig.add_trace(go.Scattermapbox(
 ))
 
 # Add the second trace: Train Stations (Red)
-fig.add_trace(go.Scattermapbox(
+fig.add_trace(go.Scattermap(
     lat=df_train['geo_lat'],
     lon=df_train['geo_lng'],
     mode='markers',
-    marker=go.scattermapbox.Marker(
+    marker=go.scattermap.Marker(
         size=5,
         color='red'
     ),

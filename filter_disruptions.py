@@ -8,7 +8,7 @@ df_stations = pd.read_csv(os.path.join(os.getcwd(),r"data\stations_within_circle
 station_codes = set(df_stations["code"])
 
 # keep only rows where at least one code in rdt_station_codes is in the station list
-df_filtered = df_disruptions[
+df = df_disruptions[
     df_disruptions["rdt_station_codes"].apply(
         lambda x: any(code.strip() in station_codes for code in str(x).split(","))
     )
@@ -32,4 +32,9 @@ output_path = os.path.join(os.getcwd(), "data", "disruptions_filtered_top15_caus
 
 # Export the DataFrame to CSV (without the index column)
 df_top15_causes.to_csv(output_path, index=False, encoding="utf-8")
+df_filtered = df[~df["rdt_lines"].str.contains("HSL", na=False)]
 
+print(df_filtered.head(20))
+
+# save filtered disruptions as parquet
+df_filtered.to_parquet(os.path.join(os.getcwd(),r"data\disruptions_withincircle.parquet"))

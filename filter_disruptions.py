@@ -14,6 +14,9 @@ df = df_disruptions[
     )
 ].reset_index(drop=True)
 
+# Remove the HSL entries from the dataset.
+df_filtered = df[~df["rdt_lines"].str.contains("HSL", na=False)]
+
 #Count the 15 most frequent statistical causes
 statcause_count_filtered = df_filtered["statistical_cause_en"].value_counts()
 top_15_statcauses_filtered = statcause_count_filtered.head(15)
@@ -32,9 +35,3 @@ output_path = os.path.join(os.getcwd(), "data", "disruptions_filtered_top15_caus
 
 # Export the DataFrame to CSV (without the index column)
 df_top15_causes.to_csv(output_path, index=False, encoding="utf-8")
-df_filtered = df[~df["rdt_lines"].str.contains("HSL", na=False)]
-
-print(df_filtered.head(20))
-
-# save filtered disruptions as parquet
-df_filtered.to_parquet(os.path.join(os.getcwd(),r"data\disruptions_withincircle.parquet"))

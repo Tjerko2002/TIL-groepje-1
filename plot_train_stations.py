@@ -1,18 +1,52 @@
+
+# Code to plot the train stations without the weather stations
+# import pandas as pd
+# import os
+# import plotly.express as px
+
+# # 1. Load CSV file
+# filename = 'data/stations-2023-09.csv'
+# file_path = os.path.join(os.getcwd(), filename)
+# df = pd.read_csv(file_path)
+# print(df.head())
+
+# # Initializing variables
+# lat_col = 'geo_lat'
+# lon_col = 'geo_lng'
+# name_col = 'name_long'        
+# id_col = 'id'           
+
+# # Create a plotly map of the dataframe 
+# fig = px.scatter_mapbox(
+#     df,
+#     lat=lat_col,
+#     lon=lon_col,
+#     hover_name=name_col,           
+#     hover_data=[id_col],           
+#     color_discrete_sequence=["red"],  
+#     zoom=7,
+#     title="Train Stations in the Netherlands"
+# )
+
+# # 4. Layout of the map
+# fig.update_layout(
+#     mapbox_style="open-street-map",
+#     margin={"r":0, "t":40, "l":0, "b":0}
+# )
+
+# fig.show()
+
+
+
+
+# Code to plot the train stations with the weather stations included
 import pandas as pd
 import os
 import plotly.graph_objects as go # Import graph_objects
 
 # --- 1. Load and Prepare Data ---
+df_stations = pd.read_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
 
-# Assume df_stations (weather stations) is already loaded.
-# For a runnable example, we'll create it:
-weather_data = {
-    'STN': [215, 235, 240, 249, 251, 260, 267],
-    'LON(east)': [4.437, 4.781, 4.790, 4.979, 5.346, 5.180, 5.384],
-    'LAT(north)': [52.141, 52.928, 52.318, 52.644, 53.392, 52.100, 52.898],
-    'NAME': ['Voorschoten', 'De Kooy', 'Schiphol', 'Berkhout', 'Hoorn Terschelling', 'De Bilt', 'Stavoren']
-}
-df_stations = pd.DataFrame(weather_data)
 
 # Load train station data
 filename = 'data/stations-2023-09.csv'
@@ -26,11 +60,11 @@ df_train = pd.read_csv(file_path) # Renamed to df_train for clarity
 fig = go.Figure()
 
 # Add the first trace: Weather Stations (Blue)
-fig.add_trace(go.Scattermap(
+fig.add_trace(go.Scattermapbox(
     lat=df_stations['LAT(north)'],
     lon=df_stations['LON(east)'],
     mode='markers',
-    marker=go.scattermap.Marker(
+    marker=go.scattermapbox.Marker(
         size=10,
         color='blue'
     ),
@@ -40,11 +74,11 @@ fig.add_trace(go.Scattermap(
 ))
 
 # Add the second trace: Train Stations (Red)
-fig.add_trace(go.Scattermap(
+fig.add_trace(go.Scattermapbox(
     lat=df_train['geo_lat'],
     lon=df_train['geo_lng'],
     mode='markers',
-    marker=go.scattermap.Marker(
+    marker=go.scattermapbox.Marker(
         size=5,
         color='red'
     ),

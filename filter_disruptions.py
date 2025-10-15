@@ -14,4 +14,22 @@ df_filtered = df_disruptions[
     )
 ].reset_index(drop=True)
 
+#Count the 15 most frequent statistical causes
+statcause_count_filtered = df_filtered["statistical_cause_en"].value_counts()
+top_15_statcauses_filtered = statcause_count_filtered.head(15)
+
+# print(top_15_statcauses_filtered)
+
+#Create a new DataFrame containing only rows with these causes
+df_top15_causes = df_filtered[
+    df_filtered["statistical_cause_en"].isin(top_15_statcauses_filtered.index)
+].reset_index(drop=True)
+
+#print(df_top15_causes)
+
+# Determine where the new file will be displayed and what the name will be
+output_path = os.path.join(os.getcwd(), "data", "disruptions_filtered_top15_causes.csv")
+
+# Export the DataFrame to CSV (without the index column)
+df_top15_causes.to_csv(output_path, index=False, encoding="utf-8")
 

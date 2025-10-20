@@ -17,7 +17,7 @@ from scipy.stats import spearmanr
 # 0) CONFIG
 # ----------------------------
 PATH_WEATHER = os.path.join(os.getcwd(), r"data\df_weather_5_stations.parquet")
-PATH_DISRUPT = os.path.join(os.getcwd(), r"data\disruptions_withincircle.parquet")
+PATH_DISRUPT = os.path.join(os.getcwd(), r"data\disruptions_filtered_top15_causes.csv")
 WEATHER_STATION_FILTER = None   # e.g., 344 to select one station, or None to keep all
 
 # KNMI-like weather columns present in your data
@@ -51,7 +51,7 @@ for col in ['FH','FF','FX','T','RH','DR']:
 # ----------------------------
 # 2) LOAD DISRUPTIONS
 # ----------------------------
-df_disruptions = pd.read_parquet(PATH_DISRUPT)
+df_disruptions = pd.read_csv(PATH_DISRUPT)
 
 # Parse times and floor to hour (start time)
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
@@ -134,19 +134,4 @@ plt.title(f"Correlation: Weather vs Total Disruption Duration per Hour{title_suf
 plt.xlabel("Disruption Type (duration minutes per hour)")
 plt.ylabel("Weather Variables")
 plt.tight_layout()
-plt.show()
-
-# ----------------------------
-# 8) (Optional) CLUSTERED VIEW for pattern discovery
-# ----------------------------
-# Uncomment to see clustered structure (values still shown regardless of significance)
-g = sns.clustermap(
-    corrs,
-    annot=True,
-    fmt=".2f",
-    cmap="coolwarm",
-    linewidths=0.4,
-    figsize=(18, 10)
-)
-g.fig.suptitle("Clustermap: Weather vs Duration Correlations (unmasked)", y=1.02, fontsize=16)
 plt.show()

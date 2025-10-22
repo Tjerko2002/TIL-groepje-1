@@ -20,6 +20,7 @@ df_filtered = df[~df["rdt_lines"].str.contains("HSL", na=False)]
 #Count the 15 most frequent statistical causes
 statcause_count_filtered = df_filtered["statistical_cause_en"].value_counts()
 top_15_statcauses_filtered = statcause_count_filtered.head(15)
+print(statcause_count_filtered)
 
 # print(top_15_statcauses_filtered)
 

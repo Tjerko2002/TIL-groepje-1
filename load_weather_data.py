@@ -1,9 +1,8 @@
 import os
 import pandas as pd
-"""This file opens and cleans the datasets for the weather data of KNMI. It stores the data as pandas dataframe in pickle format."""
-# Turn to true to overwrite the pickle file with updates.
+"""This file opens and cleans the datasets for the weather data of KNMI."""
+# Turn to true to overwrite the parquet file with updates.
 stations_to_parquet = False
-weather_to_parquet = False
 weather_5_stations_to_parquet = False
 
 
@@ -38,23 +37,6 @@ if stations_to_parquet == True:
 
     df_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
 
-
-# Based on the train data, the weather stations Rotterdam and Gilze-Rijen have been chosen for the weather data.
-# Below, the csv is opened, a dataframe is created and this cleaned dataframe is stored as a pickle file for 
-# use in the analysis. 
-
-file_rotterdam = r"data\weather_2024_rotterdam_gilze-rijen.csv"
-path_rotterdam = os.path.join(os.getcwd(),file_rotterdam)
-
-if weather_to_parquet == True:
-    df_rotterdam = pd.read_csv(
-        path_rotterdam,
-        comment="#",
-        skipinitialspace=True,
-        na_values=["", " "],     
-    )
-    # Save the weather file as parquet file
-    df_rotterdam.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_2024_rotterdam_gilze-rijen.parquet"))
 
 # New plan: 5 stations. 
 if weather_5_stations_to_parquet == True:

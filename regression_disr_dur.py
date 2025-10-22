@@ -1,7 +1,3 @@
-# df_weather = pd.read_parquet(os.path.join(os.getcwd(), r"data\df_weather_5_stations.parquet"))
-# df_stations = pd.read_csv(os.path.join(os.getcwd(), r"data\stations_within_circle.csv"))
-# df_disruptions = pd.read_parquet(os.path.join(os.getcwd(), r"data\disruptions_withincircle.parquet"))
-
 # ============================
 # Correlate WEATHER ↔ DURATION
 # ============================

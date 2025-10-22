@@ -8,9 +8,7 @@ import numpy as np
 import pandas as pd
 
 
-# ========================
 # 1. Load and prepare weather data
-# ========================
 df_weather = pd.read_parquet('data/df_weather_5_stations.parquet')
 
 # Format hour and create datetime
@@ -35,9 +33,7 @@ df_weather_sel['block_day'] = df_weather_sel['datetime'].dt.floor('D')
 # Aggregate weather per day (mean values)
 df_weather_day = df_weather_sel.groupby('block_day')[weather_cols].mean().reset_index()
 
-# ========================
 # 2. Load and prepare disruptions
-# ========================
 df_disruptions = pd.read_csv('data/disruptions_filtered_top15_causes.csv')
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
 df_disruptions['block_day'] = df_disruptions['start_time'].dt.floor('D')
@@ -56,18 +52,14 @@ df_disruption_day = (
     .reset_index()
 )
 
-# ========================
 # 3. Merge weather and disruptions
-# ========================
 merged_day = pd.merge(df_weather_day, df_disruption_day, on='block_day', how='inner')
 
 # Standardize weather variables
 scaler = StandardScaler()
 merged_day[weather_cols] = scaler.fit_transform(merged_day[weather_cols])
 
-# ========================
 # 4. Correlation analysis
-# ========================
 all_cols = merged_day.columns.tolist()
 disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 
@@ -75,9 +67,7 @@ disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 corr_matrix_day = merged_day.drop(columns=['block_day']).corr(method='spearman')
 corr_sub_day = corr_matrix_day.loc[weather_cols, disruption_cols]
 
-# ========================
 # 5. Plot heatmap wow
-# ========================
 plt.figure(figsize=(22, 12))
 sns.heatmap(
     corr_sub_day,

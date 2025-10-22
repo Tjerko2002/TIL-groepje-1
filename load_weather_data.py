@@ -6,6 +6,7 @@ stations_to_parquet = False
 weather_to_parquet = False
 weather_5_stations_to_parquet = False
 
+
 # Set the paths to the datafiles. 
 file_weather_stations = r"data\locations_weatherstations.csv"
 file_path_stations = os.path.join(os.getcwd(),file_weather_stations)
@@ -66,4 +67,8 @@ if weather_5_stations_to_parquet == True:
         skipinitialspace=True,  # ignore extra spaces after commas
         na_values=['', ' '],    # treat empty fields as NaN
     )
-    df_weather_5_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet"))
+    
+    file_path = os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet")
+    df_weather_5_stations.to_parquet(file_path)
+
+

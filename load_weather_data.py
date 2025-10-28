@@ -1,6 +1,8 @@
 import os
 import pandas as pd
-"""This file opens and cleans the datasets for the weather data of KNMI."""
+"""This file opens and cleans the datasets for the weather data of KNMI. 
+First, the 
+"""
 # Turn to true to overwrite the parquet file with updates.
 stations_to_parquet = False
 weather_5_stations_to_parquet = False
@@ -14,7 +16,7 @@ file_weather = r"data\weather_2024.csv"
 file_path_weather = os.path.join(os.getcwd(),file_weather)
 
 
-if stations_to_parquet == True:
+if stations_to_parquet:
     df_stations = pd.read_csv(file_path_stations)
     # Because the csv has emty values as spaces, the dropna function later doesn't work. Therefore, here the csv
     # is opened using na_values=["", " "].
@@ -25,7 +27,7 @@ if stations_to_parquet == True:
         na_values=["", " "],     
     )
 
-    df_weather.columns = df_weather.columns.str.strip() # The dataset has leading spaces in column names. 
+    df_weather.columns = df_weather.columns.str.strip() # Remove leading spaces in column names. 
 
     # Drop the rows if these stations do not report rain and hourly rain values. 
     df_weather = df_weather.dropna(subset=["R", "RH"])
@@ -39,7 +41,7 @@ if stations_to_parquet == True:
 
 
 # New plan: 5 stations. 
-if weather_5_stations_to_parquet == True:
+if weather_5_stations_to_parquet:
     file_weather_5_stations = r"data\weatherdata_2024_5stations.txt"
     file_path_weather_5_stations = os.path.join(os.getcwd(),file_weather_5_stations)
 

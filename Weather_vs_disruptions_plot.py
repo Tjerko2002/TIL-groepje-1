@@ -55,17 +55,15 @@ df_disruption_hour = (
 # --------------------------------------------------
 # Step 3: Classify hourly weather categories
 # --------------------------------------------------
-# --------------------------------------------------
-# Step 3: Classify hourly weather categories (stricter thresholds)
-# --------------------------------------------------
+
 def categorize_weather_hour(row):
     T = row['T']
     Q = row['Q']
     DR = row['DR']
-    RH = row['RH']  # neerslaghoeveelheid in mm
+    RH = row['RH']  
     FH = row['FH']
     FX = row['FX']
-    S = row['S']    # sneeuwindicator (0 of 1)
+    S = row['S']    
 
     # Stormy hour: stronger wind and significant precipitation
     if (0 <= T <= 25) and (Q <= 100) and ((RH >= 5) or (DR >= 2)) and (FX >= 20 or FH >= 10):

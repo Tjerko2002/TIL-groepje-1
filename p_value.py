@@ -7,6 +7,7 @@ from scipy.stats import spearmanr
 import numpy as np
 import pandas as pd
 
+"""This file calculates the correlation and p-values between the daily weather conditions and the train disruptions"""
 
 # 1. Load and prepare weather data
 df_weather = pd.read_parquet('data/df_weather_5_stations.parquet')

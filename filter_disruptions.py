@@ -17,6 +17,10 @@ df = df_disruptions[
 # Remove the HSL entries from the dataset.
 df_filtered = df[~df["rdt_lines"].str.contains("HSL", na=False)]
 
+# Remove the entries with disruption types that were not selected.
+
+
+
 #Count the 15 most frequent statistical causes
 statcause_count_filtered = df_filtered["statistical_cause_en"].value_counts()
 top_15_statcauses_filtered = statcause_count_filtered.head(15)

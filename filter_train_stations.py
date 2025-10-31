@@ -28,6 +28,5 @@ output_path = 'data/stations_within_circle.csv'
 df_circle.to_csv(output_path, index=False)
 
 #  show results
-print(f"{len(df_circle)} stations gevonden binnen {radius_km} km van Bodegraven.")
-print(f"Bestand opgeslagen als: {output_path}")
+print(f"{len(df_circle)} stations found within {radius_km} km from Bodegraven.")
 df_circle.head()

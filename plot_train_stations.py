@@ -1,4 +1,3 @@
-
 # Code to plot the train stations with the weather stations included
 import pandas as pd
 import os

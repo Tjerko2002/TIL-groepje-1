@@ -38,7 +38,7 @@ for col in ['FH','FF','FX','T','RH','DR']:
     df_weather_sel[col] = df_weather_sel[col] / 10
 
 # Load disruptions
-df_disruptions = pd.read_csv('data/disruptions_filtered_top15_causes.csv')
+df_disruptions = pd.read_csv('data/disruptions_filtered_selected__causes.csv')
 
 # Unify start times. 
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])

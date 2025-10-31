@@ -34,11 +34,19 @@ df_disruptions['block_hour'] = df_disruptions['start_time'].dt.floor('h')
 
 # Filter for weather-sensitive causes
 included_causes = [
+    'an object in the overhead wires',
+    'broken down train',
+    'demaged railway bridge',
+    'defective railway track'
+    'defective point',
+    'hinderence on the railway',
+    'level crossing failure',
     'signal failure',
-    'track failure',
-    'switch failure',
-    'overhead wire failure',
-    'weather conditions'
+    
+
+
+
+
 ]
 df_disruptions = df_disruptions[
     df_disruptions['cause_en'].str.lower().isin(included_causes)

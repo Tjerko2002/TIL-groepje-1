@@ -113,6 +113,10 @@ plt.tight_layout()
 plt.show()
 
 
+# To dos for plotten weerdata:
+# Kijken hoeveel procent van de treinen rijden tussen 8:00 en 22:00 bijvoorbeeld. Stel dit is 90%, dan neem je weerdata tussen 8:00 en 22:00 keer 0.9
+# Bepaal gemiddelde voor elke maand met deze weighted factors
+
 # # Now, the weather data can be used to implement in the existing plot
 # file_path = os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet")
 # weather_data = pd.read_parquet(file_path)

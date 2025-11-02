@@ -20,7 +20,7 @@ causes_to_keep = [
 ]
 
 # Filter the dataframe
-df_filtered_circle_disruptions = df_circle_disruptions[df_circle_disruptions["cause_en"].isin(causes_to_keep)]
+df_filtered_circle_disruptions = df_circle_disruptions[df_circle_disruptions["cause_en"].isin(causes_to_keep)].copy()
 
 # Test if the file is read properly
 #print(df_filtered_circle_disruptions['cause_en'])
@@ -66,7 +66,7 @@ monthly_minutes["month"] = monthly_minutes["month_period"].dt.to_timestamp()
 # The data file of the weather data from the five stations is read and checked
 file_path = os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet")
 weather_data = pd.read_parquet(file_path)
-print(weather_data)
+# print(weather_data)
 
 # HH = 24 is changed to HH = 0 for the next day, because 24 at the end is not a valid datetime string and therefore produces a ValueError if not altered. 
 mask = weather_data["HH"] == 24
@@ -85,7 +85,7 @@ weather_data["datetime"] = pd.to_datetime(
 
 # Weather data is averaged for each datetime, defined above, over all five stations
 temp_rain = weather_data.groupby("datetime")[["T", "RH"]].mean().reset_index()
-print(temp_rain)
+# print(temp_rain)
 
 # Function is used that returns the weighted temperature and rain values based on what hour each value is measured.
 # This comes from the fact that in between 6:00 and 24:00 (daytime), 92.20% of the trains are active.
@@ -289,7 +289,7 @@ ax10.plot(monthly_minutes_wind["month"].dt.strftime("%b"), monthly_minutes_wind[
 ax10.set_ylabel(f"Hours with FH > {wind_threshold/10*3.6:.0f} km/h")
 
 # Title and layout
-plt.title(f"Train Disruptions And Frequency of Mean Winds (> {wind_threshold/10*3.6:.0f} km/h) Per Month (2024)")
+plt.title(f"Train Disruption Minutes And Frequency of Mean Winds (> {wind_threshold/10*3.6:.0f} km/h) Per Month (2024)")
 
 fig5.tight_layout()
 

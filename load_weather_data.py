@@ -1,11 +1,10 @@
 import os
 import pandas as pd
-"""This file opens and cleans the datasets for the weather data of KNMI. 
-First, the 
+"""This file opens the weather stations location data, as well as the hourly data of the 5 chosen weather stations.
 """
-# Turn to true to overwrite the parquet file with updates.
-stations_to_parquet = False
-weather_5_stations_to_parquet = False
+# Turn to true to overwrite the csv file with updates.
+stations_to_csv = True
+weather_5_stations_to_csv = True
 
 
 # Set the paths to the datafiles. 
@@ -16,7 +15,7 @@ file_weather = r"data\weather_2024.csv"
 file_path_weather = os.path.join(os.getcwd(),file_weather)
 
 
-if stations_to_parquet:
+if stations_to_csv:
     df_stations = pd.read_csv(file_path_stations)
     # Because the csv has emty values as spaces, the dropna function later doesn't work. Therefore, here the csv
     # is opened using na_values=["", " "].
@@ -35,13 +34,13 @@ if stations_to_parquet:
 
     df_stations = df_stations[df_stations["STN"].isin(valid_stations)]
 
-    # Save the valid stations as parquet file
+    # Save the valid stations as csv file
 
-    df_stations.to_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
+    df_stations.to_csv(os.path.join(os.getcwd(),r"data\df_weatherstations_locations.csv"))
 
 
-# New plan: 5 stations. 
-if weather_5_stations_to_parquet:
+
+if weather_5_stations_to_csv:
     file_weather_5_stations = r"data\weatherdata_2024_5stations.txt"
     file_path_weather_5_stations = os.path.join(os.getcwd(),file_weather_5_stations)
 
@@ -52,7 +51,7 @@ if weather_5_stations_to_parquet:
         na_values=['', ' '],    # treat empty fields as NaN
     )
     
-    file_path = os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet")
-    df_weather_5_stations.to_parquet(file_path)
+    file_path = os.path.join(os.getcwd(),r"data\df_weather_2024.csv")
+    df_weather_5_stations.to_csv(file_path)
 
 

@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 #########################################################################
 
 # Loading weather data
-df_weather = pd.read_parquet('data/df_weather_5_stations.parquet')
+df_weather = pd.read_csv('data/df_weather_2024.csv')
 
 # HH as string. 
 df_weather['HH'] = df_weather['HH'].astype(str).str.zfill(2)
@@ -30,7 +30,7 @@ df_weather['datetime'] = pd.to_datetime(
 df_weather = df_weather.dropna(subset=['datetime'])
 
 # Select relevant columns
-weather_cols = ['FH','FF','FX','T','T10N','Q','DR','RH','VV','M','R','S','O','Y']
+weather_cols = ['FH','FF','FX','T','Q','DR','RH','VV','M','R','S','O','Y']
 df_weather_sel = df_weather[['datetime'] + weather_cols].copy()
 
 # Correct units
@@ -38,7 +38,7 @@ for col in ['FH','FF','FX','T','RH','DR']:
     df_weather_sel[col] = df_weather_sel[col] / 10
 
 # Load disruptions
-df_disruptions = pd.read_csv('data/disruptions_filtered_top15_causes.csv')
+df_disruptions = pd.read_csv('data/disruptions_filtered_selected_causes.csv')
 
 # Unify start times. 
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
@@ -50,7 +50,7 @@ df_disruption_pivot = (
     df_disruptions
     .pivot_table(
         index='datetime',
-        columns='cause_en',   # English description of cause
+        columns='statistical_cause_en',   # English description of cause
         values='flag',
         aggfunc='sum',        # number of disruptions per hour per type
         fill_value=0
@@ -99,7 +99,7 @@ plt.show()
 # ========================
 # 1. Load and prepare weather data
 # ========================
-df_weather = pd.read_parquet('data/df_weather_5_stations.parquet')
+df_weather = pd.read_csv('data/df_weather_2024.csv')
 
 # Format hour and create datetime
 df_weather['HH'] = df_weather['HH'].astype(str).str.zfill(2)
@@ -109,7 +109,7 @@ df_weather['datetime'] = pd.to_datetime(df_weather['datetime_str'], format='%Y%m
 df_weather = df_weather.dropna(subset=['datetime'])
 
 # Weather columns
-weather_cols = ['FH','FF','FX','T','T10N','Q','DR','RH','VV','M','R','S','O','Y']
+weather_cols = ['FH','FF','FX','T','Q','DR','RH','VV','M','R','S','O','Y']
 df_weather_sel = df_weather[['datetime'] + weather_cols].copy()
 
 # Convert units where needed
@@ -126,7 +126,7 @@ df_weather_day = df_weather_sel.groupby('block_day')[weather_cols].mean().reset_
 # ========================
 # 2. Load and prepare disruptions
 # ========================
-df_disruptions = pd.read_csv('data/disruptions_filtered_top15_causes.csv')
+df_disruptions = pd.read_csv('data/disruptions_filtered_selected_causes.csv')
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
 df_disruptions['block_day'] = df_disruptions['start_time'].dt.floor('D')
 df_disruptions['flag'] = 1
@@ -136,7 +136,7 @@ df_disruption_day = (
     df_disruptions
     .pivot_table(
         index='block_day',
-        columns='cause_en',
+        columns='statistical_cause_en',
         values='flag',
         aggfunc='sum',
         fill_value=0

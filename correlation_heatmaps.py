@@ -43,7 +43,7 @@ df_disruptions = pd.read_csv('data/disruptions_filtered_selected_causes.csv')
 
 # Unify start times. 
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
-df_disruptions['datetime'] = df_disruptions['start_time'].dt.floor('H')
+df_disruptions['datetime'] = df_disruptions['start_time'].dt.floor('h')
 
 # Create pivot table of the disruptions. 
 df_disruptions['flag'] = 1

@@ -121,9 +121,8 @@ df_weather_sel['block_day'] = df_weather_sel['datetime'].dt.floor('D')
 # Aggregate weather per day (mean values)
 df_weather_day = df_weather_sel.groupby('block_day')[weather_cols].mean().reset_index()
 
-# ========================
+
 # 2. Load and prepare disruptions
-# ========================
 df_disruptions = pd.read_csv('data/disruptions_filtered_selected_causes.csv')
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
 df_disruptions['block_day'] = df_disruptions['start_time'].dt.floor('D')

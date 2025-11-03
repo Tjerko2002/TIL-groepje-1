@@ -86,7 +86,7 @@ plt.show()
 
 # Now we calculate the p-value for each individual correlation
 
-# create a DataFrame with the same index and columns as the correlation submatrix
+# create a DataFrame with the same index and columns as the correlation matrix
 pval_matrix_day = pd.DataFrame(
     index=weather_cols,
     columns=disruption_cols,

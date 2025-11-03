@@ -2,9 +2,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+from scipy.stats import spearmanr
 
 #########################################################################
-## Correlations per hour 
+## Correlations and p-values per hour 
 #########################################################################
 
 # Loading weather data
@@ -26,7 +27,7 @@ df_weather['datetime'] = pd.to_datetime(
     errors='coerce'
 )
 
-# Eventuele mislukte conversies eruit
+# Drop potential failed conversions
 df_weather = df_weather.dropna(subset=['datetime'])
 
 # Select relevant columns
@@ -59,27 +60,27 @@ df_disruption_pivot = (
 )
 
 # Merge weather and disruptions
-merged = pd.merge(df_weather_sel, df_disruption_pivot, on='datetime', how='inner')
+merged_hour = pd.merge(df_weather_sel, df_disruption_pivot, on='datetime', how='inner')
 
 # Convert to z-scores
 scaler = StandardScaler()
-merged[weather_cols] = scaler.fit_transform(merged[weather_cols])
+merged_hour[weather_cols] = scaler.fit_transform(merged_hour[weather_cols])
 
 
 # Correlation calculations
-all_cols = merged.columns.tolist()
+all_cols = merged_hour.columns.tolist()
 disruption_cols = [c for c in all_cols if c not in weather_cols + ['datetime']]
 
 # Spearman correlation 
-corr_matrix = merged.drop(columns=['datetime']).corr(method='spearman')
+corr_matrix = merged_hour.drop(columns=['datetime']).corr(method='spearman')
 
 # Weather vs disruption in the matrix.
-corr_sub = corr_matrix.loc[weather_cols, disruption_cols]
+corr_sub_hour = corr_matrix.loc[weather_cols, disruption_cols]
 
 # Plot the heatmap
 plt.figure(figsize=(18, 10))
 sns.heatmap(
-    corr_sub,
+    corr_sub_hour,
     annot=True,
     fmt=".2f",
     cmap='coolwarm',
@@ -89,14 +90,62 @@ plt.title('Correlation between Hourly Weather Conditions and Train Disruptions',
 plt.xlabel('Disruption Type')
 plt.ylabel('Weather Variables')
 plt.tight_layout()
-plt.show()
+
+
+# Calculate the p-values 
+
+# Create DataFrame with same index and columns as correlation matrix
+pval_matrix_hour = pd.DataFrame(
+    index=weather_cols,
+    columns=disruption_cols,
+    dtype=float
+)
+
+# Loop over each weather and disruption pair for p-value calculation
+for w in weather_cols:
+    for d in disruption_cols:
+        # Compute Spearman correlation and p-value
+        rho, p = spearmanr(merged_hour[w], merged_hour[d])
+        pval_matrix_hour.loc[w, d] = p
+
+# Create a heatmap with the p-values
+plt.figure(figsize=(22, 12))
+sns.heatmap(
+    pval_matrix_hour,
+    annot=True,
+    fmt=".3f",
+    cmap='viridis_r',
+    linewidths=0.5
+)
+plt.title('P-values for Correlation between Hourly Weather and Disruptions', fontsize=16)
+plt.xlabel('Disruption Type')
+plt.ylabel('Weather Variables')
+plt.tight_layout()
+
+# Create a heatmap which shows the correlations with p-value < 0.05
+mask = pval_matrix_hour >= 0.05  # True for non-significant
+plt.figure(figsize=(22, 12))
+sns.heatmap(
+    corr_sub_hour,
+    annot=True,
+    fmt=".2f",
+    cmap='coolwarm',
+    linewidths=0.5,
+    mask=mask
+)
+plt.title('Significant Spearman Correlations (p < 0.05)', fontsize=16)
+plt.xlabel('Disruption Type')
+plt.ylabel('Weather Variables')
+plt.tight_layout()
+
+
 
 #########################################################################
-## Correlations per day 
+## Correlations and p-values per day 
 #########################################################################
 
 
-# 1. Load and prepare weather data
+# Load and prepare weather data
 df_weather = pd.read_csv('data/df_weather_2024.csv')
 
 # Format hour and create datetime
@@ -122,7 +171,7 @@ df_weather_sel['block_day'] = df_weather_sel['datetime'].dt.floor('D')
 df_weather_day = df_weather_sel.groupby('block_day')[weather_cols].mean().reset_index()
 
 
-# 2. Load and prepare disruptions
+# Load and prepare disruptions
 df_disruptions = pd.read_csv('data/disruptions_filtered_selected_causes.csv')
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
 df_disruptions['block_day'] = df_disruptions['start_time'].dt.floor('D')
@@ -141,14 +190,14 @@ df_disruption_day = (
     .reset_index()
 )
 
-# 3. Merge weather and disruptions
+# Merge weather and disruptions
 merged_day = pd.merge(df_weather_day, df_disruption_day, on='block_day', how='inner')
 
 # Standardize weather variables
 scaler = StandardScaler()
 merged_day[weather_cols] = scaler.fit_transform(merged_day[weather_cols])
 
-# 4. Correlation analysis
+# Correlation analysis
 all_cols = merged_day.columns.tolist()
 disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 
@@ -156,7 +205,7 @@ disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 corr_matrix_day = merged_day.drop(columns=['block_day']).corr(method='spearman')
 corr_sub_day = corr_matrix_day.loc[weather_cols, disruption_cols]
 
-# 5. Plot heatmap
+# Plot heatmap
 plt.figure(figsize=(22, 12))
 sns.heatmap(
     corr_sub_day,
@@ -166,6 +215,53 @@ sns.heatmap(
     linewidths=0.5
 )
 plt.title('Correlation between Daily Weather Conditions and Train Disruptions', fontsize=16)
+plt.xlabel('Disruption Type')
+plt.ylabel('Weather Variables')
+plt.tight_layout()
+
+
+# Calculate the p-values 
+
+# Create DataFrame with same index and columns as correlation matrix
+pval_matrix_day = pd.DataFrame(
+    index=weather_cols,
+    columns=disruption_cols,
+    dtype=float
+)
+
+# Loop over each weather and disruption pair for p-value calculation
+for w in weather_cols:
+    for d in disruption_cols:
+        # Compute Spearman correlation and p-value
+        rho, p = spearmanr(merged_day[w], merged_day[d])
+        pval_matrix_day.loc[w, d] = p
+
+# Create a heatmap with the p-values
+plt.figure(figsize=(22, 12))
+sns.heatmap(
+    pval_matrix_day,
+    annot=True,
+    fmt=".3f",
+    cmap='viridis_r',
+    linewidths=0.5
+)
+plt.title('P-values for Correlation between Daily Weather and Disruptions', fontsize=16)
+plt.xlabel('Disruption Type')
+plt.ylabel('Weather Variables')
+plt.tight_layout()
+
+# Create a heatmap which shows the correlations with p-value < 0.05
+mask = pval_matrix_day >= 0.05  # True for non-significant
+plt.figure(figsize=(22, 12))
+sns.heatmap(
+    corr_sub_day,
+    annot=True,
+    fmt=".2f",
+    cmap='coolwarm',
+    linewidths=0.5,
+    mask=mask
+)
+plt.title('Significant Spearman Correlations (p < 0.05)', fontsize=16)
 plt.xlabel('Disruption Type')
 plt.ylabel('Weather Variables')
 plt.tight_layout()

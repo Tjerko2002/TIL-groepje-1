@@ -50,7 +50,7 @@ df_disruption_pivot = (
     df_disruptions
     .pivot_table(
         index='datetime',
-        columns='statistical_cause_en',   # English description of cause
+        columns='statistical_cause_en',
         values='flag',
         aggfunc='sum',        # number of disruptions per hour per type
         fill_value=0
@@ -85,9 +85,9 @@ sns.heatmap(
     cmap='coolwarm',
     linewidths=0.5
 )
-plt.title('Correlatie tussen Weersomstandigheden en Treinstoringen per Uur', fontsize=16)
-plt.xlabel('Disruptietype')
-plt.ylabel('Weersvariabelen')
+plt.title('Correlation between Hourly Weather Conditions and Train Disruptions', fontsize=16)
+plt.xlabel('Disruption Type')
+plt.ylabel('Weather Variables')
 plt.tight_layout()
 plt.show()
 
@@ -96,9 +96,7 @@ plt.show()
 #########################################################################
 
 
-# ========================
 # 1. Load and prepare weather data
-# ========================
 df_weather = pd.read_csv('data/df_weather_2024.csv')
 
 # Format hour and create datetime
@@ -144,18 +142,14 @@ df_disruption_day = (
     .reset_index()
 )
 
-# ========================
 # 3. Merge weather and disruptions
-# ========================
 merged_day = pd.merge(df_weather_day, df_disruption_day, on='block_day', how='inner')
 
 # Standardize weather variables
 scaler = StandardScaler()
 merged_day[weather_cols] = scaler.fit_transform(merged_day[weather_cols])
 
-# ========================
 # 4. Correlation analysis
-# ========================
 all_cols = merged_day.columns.tolist()
 disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 
@@ -163,9 +157,7 @@ disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 corr_matrix_day = merged_day.drop(columns=['block_day']).corr(method='spearman')
 corr_sub_day = corr_matrix_day.loc[weather_cols, disruption_cols]
 
-# ========================
 # 5. Plot heatmap
-# ========================
 plt.figure(figsize=(22, 12))
 sns.heatmap(
     corr_sub_day,

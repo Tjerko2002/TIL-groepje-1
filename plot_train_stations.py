@@ -4,7 +4,7 @@ import os
 import plotly.graph_objects as go # Import graph_objects
 
 # --- 1. Load and Prepare Data ---
-df_stations = pd.read_parquet(os.path.join(os.getcwd(),r"data\df_stations.parquet"))
+df_stations = pd.read_csv(os.path.join(os.getcwd(),r"data\df_weatherstations_locations.csv"))
 
 
 # Load train station data
@@ -41,7 +41,7 @@ fig.add_trace(go.Scattermap(
 ))
 
 
-# --- 3. Update the Layout ---
+# 3. Update the Layout
 
 fig.update_layout(
     title='Weather and Train Stations in the Netherlands',

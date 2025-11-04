@@ -46,8 +46,8 @@ monthly_minutes["month"] = monthly_minutes["month_period"].dt.to_timestamp()
 # Now, the weather data can be used to implement it in the final plot as well
 
 # The data file of the weather data from the five stations is read and checked
-file_path = os.path.join(os.getcwd(),r"data\df_weather_5_stations.parquet")
-weather_data = pd.read_parquet(file_path)
+file_path = os.path.join(os.getcwd(),r"data\df_weather_2024.csv")
+weather_data = pd.read_csv(file_path)
 # print(weather_data)
 
 # HH = 24 is changed to HH = 0 for the next day, because 24 at the end is not a valid datetime string and therefore produces a ValueError if not altered. 

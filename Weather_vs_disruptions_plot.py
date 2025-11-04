@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 """This Py file combines weather factors and plots their relation with weather effected train disruptions"""
 # Step 1: Load and clean weather data
 
-df_weather = pd.read_parquet('data/df_weather_5_stations.parquet')
+df_weather = pd.read_csv('data\df_weather_2024.csv')
 
 # Convert units
 df_weather['FX'] = df_weather['FX'] / 10  # max gust (m/s)
@@ -123,8 +123,8 @@ print(agg_hour)
 
 
 
-merged_hour.to_parquet('data/merged_hour.parquet')
-print("merged_hour saved to data/merged_hour.parquet")
+merged_hour.to_csv('data/merged_hour.csv')
+print("merged_hour saved to data/merged_hour.csv")
 
 # Step 6: Plot hourly disruptions per category
 

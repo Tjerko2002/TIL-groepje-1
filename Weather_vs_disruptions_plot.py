@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 """This Py file combines weather factors and plots their relation with weather effected train disruptions"""
 # Step 1: Load and clean weather data
 
-df_weather = pd.read_csv('data\df_weather_2024.csv')
+df_weather = pd.read_csv(r'data\df_weather_2024.csv')
 
 # Convert units
 df_weather['FX'] = df_weather['FX'] / 10  # max gust (m/s)

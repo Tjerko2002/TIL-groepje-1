@@ -17,6 +17,8 @@ This repository contains:
 - Filtered Datasets:
 1. Train disruption data for weather related causes
 2. Train stations within circle
+3. Weather data for the five weatherstations.
+4. Locations of the valid weather stations
 
 - Project_Group_1:
 Research questions and explanation/analysis of the project in Jupyter notebook
@@ -24,7 +26,7 @@ Research questions and explanation/analysis of the project in Jupyter notebook
 - Python code files for filtering, analysis and plots
 
 In order to run the project, the following packages need to be installed. 
-When these are installed, the "run all" button in the notebook can be used. 
+When these are installed, the "run all" button in the notebook Project_Group_1.ipynb can be used. 
 - pandas
 - numpy
 - matplotlib

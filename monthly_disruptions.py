@@ -124,9 +124,12 @@ monthly_minutes_combined = pd.merge(monthly_minutes, monthly_temp_rain, on="mont
 
 
 # Now, plots can be created to compare the weather data with the disruptions
+fig, axs = plt.subplots(3, 2, figsize=(20, 18))
+axs = axs.flatten()  # flatten the 3x2 array of axes for easy indexing
+
 
 # Plot of the disruptions per month, together with the average weighted temperature in each month. 
-fig1, ax1 = plt.subplots(figsize=(10,6))
+ax1 = axs[0]
 
 # Bar chart: number of disruptions (first axis)
 ax1.bar(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["disruption_number"], label="Number of Disruptions", alpha=0.7)
@@ -140,16 +143,16 @@ ax2.plot(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combin
 ax2.set_ylabel("Average Temperature (°C)")
 
 # Title and layout
-plt.title("Train Disruptions And Weighted Average Temperature Per Month (2024)")
-fig1.tight_layout()
+ax1.set_title("Figure 1: Train Disruptions And Weighted Average Temperature Per Month (2024)")
 
 # Add legends for both axes
 ax1.legend(loc="upper left")
 ax2.legend(loc="upper right")
 
 
+
 # Plot of the disruption minutes per month, together with the average weighted temperature in each month. 
-fig2, ax3 = plt.subplots(figsize=(10,6))
+ax3 = axs[1]
 
 # Bar chart: disruption minutes (first axis)
 ax3.bar(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["disruption_minutes"], label="Disruption Minutes", alpha=0.7)
@@ -163,8 +166,7 @@ ax4.plot(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_co
 ax4.set_ylabel("Average Temperature (°C)")
 
 # Title and layout
-plt.title("Train Disruption Minutes And Weighted Average Temperature Per Month (2024)")
-fig2.tight_layout()
+ax3.set_title("Figure 2: Train Disruption Minutes And Weighted Average Temperature Per Month (2024)")
 
 # Add legends for both axes
 ax3.legend(loc="upper left")
@@ -173,7 +175,7 @@ ax4.legend(loc="upper right")
 
 
 # Plot of the disruptions per month, together with the total rainfall in each month.
-fig3, ax5 = plt.subplots(figsize=(10,6))
+ax5 = axs[2]
 
 # Bar chart: number of disruptions (first axis)
 ax5.bar(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["disruption_number"], label="Number of Disruptions", alpha=0.7)
@@ -187,16 +189,16 @@ ax6.plot(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combin
 ax6.set_ylabel("Total Rainfall (mm)")
 
 # Title and layout
-plt.title("Train Disruptions And Total Rainfall Per Month (2024)")
-fig3.tight_layout()
+ax5.set_title("Figure 3: Train Disruptions And Total Rainfall Per Month (2024)")
 
 # Add legends for both axes
 ax5.legend(loc="upper left")
 ax6.legend(loc="upper right")
 
 
+
 # Plot of the disruption minutes per month, together with the total rainfall in each month.
-fig4, ax7 = plt.subplots(figsize=(10,6))
+ax7 = axs[3]
 
 # Bar chart: disruption minutes (first axis)
 ax7.bar(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["disruption_minutes"], label="Disruption Minutes", alpha=0.7)
@@ -210,8 +212,7 @@ ax8.plot(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_co
 ax8.set_ylabel("Total Rainfall (mm)")
 
 # Title and layout
-plt.title("Train Disruption Minutes And Total Rainfall Per Month (2024)")
-fig4.tight_layout()
+ax7.set_title("Figure 4: Train Disruption Minutes And Total Rainfall Per Month (2024)")
 
 # Add legends for both axes
 ax7.legend(loc="upper left")
@@ -220,52 +221,53 @@ ax8.legend(loc="upper right")
 
 
 # Plot of the disruption per month, together with the hourly windspeed frequency above the threshold in each month.
-fig6, ax11 = plt.subplots(figsize=(10,6))
+ax9 = axs[4]
 
 # Bar chart: number of disruptions (first axis)
-ax11.bar(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["disruption_number"],
+ax9.bar(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["disruption_number"],
          label="Number of Disruptions", alpha=0.7)
+ax9.set_xlabel("Month")
+ax9.set_ylabel("Number of Disruptions")
+ax9.grid(axis="y", linestyle="--", alpha=0.7)
+
+# Line: frequency of strong wind hours (second axis)
+ax10 = ax9.twinx()
+ax10.plot(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["hours_high_wind"], color="green", marker="^", label=f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
+ax10.set_ylabel(f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
+
+# Title and layout
+ax9.set_title(f"Figure 5: Train Disruptions And Frequency of Mean Winds (> {wind_threshold*3.6:.0f} km/h) Per Month (2024)")
+
+# Add legends for both axes
+ax9.legend(loc="upper left")
+ax10.legend(loc="upper right")
+
+
+
+# Plot of the disruption minutes per month, together with the hourly windspeed frequency above the threshold in each month.
+ax11 = axs[5]
+
+# Bar chart: disruption minutes (first axis)
+ax11.bar(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["disruption_minutes"],
+        label="Disruption Minutes", alpha=0.7)
 ax11.set_xlabel("Month")
-ax11.set_ylabel("Number of Disruptions")
+ax11.set_ylabel("Disruption Minutes")
 ax11.grid(axis="y", linestyle="--", alpha=0.7)
 
 # Line: frequency of strong wind hours (second axis)
 ax12 = ax11.twinx()
-ax12.plot(monthly_count_combined["month"].dt.strftime("%b"), monthly_count_combined["hours_high_wind"], color="green", marker="^", label=f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
+ax12.plot(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["hours_high_wind"], color="green", marker="^", label=f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
 ax12.set_ylabel(f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
 
 # Title and layout
-plt.title(f"Train Disruptions And Frequency of Mean Winds (> {wind_threshold*3.6:.0f} km/h) Per Month (2024)")
-
-fig6.tight_layout()
+ax11.set_title(f"Figure 6: Train Disruption Minutes And Frequency of Mean Winds (> {wind_threshold*3.6:.0f} km/h) Per Month (2024)")
 
 # Add legends for both axes
 ax11.legend(loc="upper left")
 ax12.legend(loc="upper right")
 
 
-# Plot of the disruption minutes per month, together with the hourly windspeed frequency above the threshold in each month.
-fig5, ax9 = plt.subplots(figsize=(10,6))
 
-# Bar chart: disruption minutes (first axis)
-ax9.bar(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["disruption_minutes"],
-        label="Disruption Minutes", alpha=0.7)
-ax9.set_xlabel("Month")
-ax9.set_ylabel("Disruption Minutes")
-ax9.grid(axis="y", linestyle="--", alpha=0.7)
-
-# Line: frequency of strong wind hours (second axis)
-ax10 = ax9.twinx()
-ax10.plot(monthly_minutes_combined["month"].dt.strftime("%b"), monthly_minutes_combined["hours_high_wind"], color="green", marker="^", label=f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
-ax10.set_ylabel(f"Hours with FH > {wind_threshold*3.6:.0f} km/h")
-
-# Title and layout
-plt.title(f"Train Disruption Minutes And Frequency of Mean Winds (> {wind_threshold*3.6:.0f} km/h) Per Month (2024)")
-
-fig5.tight_layout()
-
-# Add legends for both axes
-ax9.legend(loc="upper left")
-ax10.legend(loc="upper right")
-
+# Final layout and display
+plt.tight_layout()
 plt.show()

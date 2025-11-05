@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import plotly.graph_objects as go # Import graph_objects
 
-# --- 1. Load and Prepare Data ---
+# 1. Load and Prepare Data
 df_stations = pd.read_csv(os.path.join(os.getcwd(),r"data\df_weatherstations_locations.csv"))
 
 
@@ -13,7 +13,7 @@ file_path = os.path.join(os.getcwd(), filename)
 df_train = pd.read_csv(file_path) # Renamed to df_train for clarity
 
 
-# --- 2. Create the Figure and Add Traces ---
+# 2. Create the Figure and Add Traces
 
 # Initialize a figure using graph_objects
 fig = go.Figure()
@@ -53,5 +53,5 @@ fig.update_layout(
     margin=dict(r=0, t=40, l=0, b=0),
     legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
 )
-# --- 4. Show the Figure ---
+# 4. Show the Figure
 fig.show()

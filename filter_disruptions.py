@@ -1,8 +1,9 @@
 import pandas as pd
 import os
-
+"""This file opens the disruption data and the train stations within circle data, and outputs the disruptions only within the circle.
+   In addition, it also filters the disruptions to only keep the selected causes."""
 # Load both disruption data as well as the train stations within the circle.
-df_disruptions = pd.read_csv(os.path.join(os.getcwd(), r"data\disruptions-2024 (3).csv"))
+df_disruptions = pd.read_csv(os.path.join(os.getcwd(), r"data\disruptions-2024.csv"))
 df_stations = pd.read_csv(os.path.join(os.getcwd(), r"data\stations_within_circle.csv"))
 
 # Filter to only keep the disruptions from the disruption dataset that include at least

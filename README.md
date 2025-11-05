@@ -1,3 +1,5 @@
+This is our submission for the TIL programming group assignment. 
+
 This project is made by:
 Jarrik Algera
 Lorenzo Bouman

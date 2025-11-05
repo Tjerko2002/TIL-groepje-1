@@ -4,6 +4,16 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import spearmanr
 
+"""
+Analyzes correlations between weather conditions and train disruptions on hourly and daily levels.
+
+The script:
+1. Loads and processes weather and disruption data.
+2. Merges both datasets by hour and by day.
+3. Standardizes weather variables using z-scores.
+4. Computes Spearman correlations and p-values between weather variables and disruption types.
+5. Visualizes results in heatmaps showing correlations, p-values, and significant relationships (p < 0.05).
+"""
 
 ## Correlations and p-values per hour 
 

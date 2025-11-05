@@ -86,8 +86,7 @@ merged_hour = merged_hour[
     (merged_hour['block_hour'].dt.hour >= 6) &
     (merged_hour['block_hour'].dt.hour <= 22)
 ]
-print("\nHourly scenario distribution:")
-print(merged_hour['weather_category_hour'].value_counts())
+
 
 agg_hour = (
     merged_hour
@@ -98,10 +97,6 @@ agg_hour = (
     )
     .reset_index()
 )
-
-print("\nAverage disruptions per hourly weather category:")
-print(agg_hour)
-
 
 # Step 6: Plot hourly disruptions per category
 

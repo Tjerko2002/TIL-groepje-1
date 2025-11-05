@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 """This file opens the weather stations location data, as well as the hourly data of the 5 chosen weather stations.
+   These are then converted to pandas dataframes, and exported as csvs. 
 """
 # Turn to true to overwrite the csv file with updates.
 stations_to_csv = True

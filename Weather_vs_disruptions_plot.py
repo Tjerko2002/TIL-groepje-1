@@ -42,10 +42,6 @@ included_causes = [
     'level crossing failure',
     'signal failure',
     
-
-
-
-
 ]
 df_disruptions = df_disruptions[
     df_disruptions['cause_en'].str.lower().isin(included_causes)

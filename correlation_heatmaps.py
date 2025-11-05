@@ -77,21 +77,6 @@ corr_matrix = merged_hour.drop(columns=['datetime']).corr(method='spearman')
 # Weather vs disruption in the matrix.
 corr_sub_hour = corr_matrix.loc[weather_cols, disruption_cols]
 
-# Plot the heatmap
-plt.figure(figsize=(18, 10))
-sns.heatmap(
-    corr_sub_hour,
-    annot=True,
-    fmt=".2f",
-    cmap='coolwarm',
-    linewidths=0.5
-)
-plt.title('Correlation between Hourly Weather Conditions and Train Disruptions', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
-plt.tight_layout()
-
-
 # Calculate the p-values 
 
 # Create DataFrame with same index and columns as correlation matrix
@@ -107,37 +92,6 @@ for w in weather_cols:
         # Compute Spearman correlation and p-value
         rho, p = spearmanr(merged_hour[w], merged_hour[d])
         pval_matrix_hour.loc[w, d] = p
-
-# Create a heatmap with the p-values
-plt.figure(figsize=(22, 12))
-sns.heatmap(
-    pval_matrix_hour,
-    annot=True,
-    fmt=".3f",
-    cmap='viridis_r',
-    linewidths=0.5
-)
-plt.title('P-values for Correlation between Hourly Weather and Disruptions', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
-plt.tight_layout()
-
-# Create a heatmap which shows the correlations with p-value < 0.05
-mask = pval_matrix_hour >= 0.05  # True for non-significant
-plt.figure(figsize=(22, 12))
-sns.heatmap(
-    corr_sub_hour,
-    annot=True,
-    fmt=".2f",
-    cmap='coolwarm',
-    linewidths=0.5,
-    mask=mask
-)
-plt.title('Significant Spearman Correlations (p < 0.05)', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
-plt.tight_layout()
-
 
 
 #########################################################################
@@ -205,21 +159,6 @@ disruption_cols = [c for c in all_cols if c not in weather_cols + ['block_day']]
 corr_matrix_day = merged_day.drop(columns=['block_day']).corr(method='spearman')
 corr_sub_day = corr_matrix_day.loc[weather_cols, disruption_cols]
 
-# Plot heatmap
-plt.figure(figsize=(22, 12))
-sns.heatmap(
-    corr_sub_day,
-    annot=True,
-    fmt=".2f",
-    cmap='coolwarm',
-    linewidths=0.5
-)
-plt.title('Correlation between Daily Weather Conditions and Train Disruptions', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
-plt.tight_layout()
-
-
 # Calculate the p-values 
 
 # Create DataFrame with same index and columns as correlation matrix
@@ -236,33 +175,110 @@ for w in weather_cols:
         rho, p = spearmanr(merged_day[w], merged_day[d])
         pval_matrix_day.loc[w, d] = p
 
-# Create a heatmap with the p-values
-plt.figure(figsize=(22, 12))
-sns.heatmap(
-    pval_matrix_day,
-    annot=True,
-    fmt=".3f",
-    cmap='viridis_r',
-    linewidths=0.5
-)
-plt.title('P-values for Correlation between Daily Weather and Disruptions', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
-plt.tight_layout()
 
-# Create a heatmap which shows the correlations with p-value < 0.05
-mask = pval_matrix_day >= 0.05  # True for non-significant
-plt.figure(figsize=(22, 12))
+#########################################################################
+## Correlation and p-value plots
+#########################################################################
+
+# Six figures showing the correlations, the corresponding p-values and the correlations with p-values < 0.05 in heatmaps for both hourly and daily level comparisons.
+fig, axs = plt.subplots(3, 2, figsize=(36, 24))
+axs = axs.flatten()  # flatten the 3x2 array for easy indexing
+
+
+# Create the heatmap for the hourly level correlations
+ax1 = axs[0]
+sns.heatmap(
+    corr_sub_hour,
+    annot=True,
+    fmt=".2f",
+    cmap='coolwarm',
+    linewidths=0.5,
+    ax=ax1
+)
+ax1.set_title('Correlations between Hourly Weather Conditions and Train Disruptions', fontsize=16)
+ax1.set_xlabel('Disruption Type')
+ax1.set_ylabel('Weather Variables')
+
+
+# Create the heatmap for the daily level correlations
+ax2 = axs[1]
 sns.heatmap(
     corr_sub_day,
     annot=True,
     fmt=".2f",
     cmap='coolwarm',
     linewidths=0.5,
-    mask=mask
+    ax=ax2
 )
-plt.title('Significant Spearman Correlations (p < 0.05)', fontsize=16)
-plt.xlabel('Disruption Type')
-plt.ylabel('Weather Variables')
+ax2.set_title('Correlations between Daily Weather Conditions and Train Disruptions', fontsize=16)
+ax2.set_xlabel('Disruption Type')
+ax2.set_ylabel('Weather Variables')
+
+
+# Create a heatmap with the p-values related to the hourly level correlations
+ax3 = axs[2]
+sns.heatmap(
+    pval_matrix_hour,
+    annot=True,
+    fmt=".3f",
+    cmap='viridis_r',
+    linewidths=0.5,
+    ax=ax3
+)
+ax3.set_title('P-values for Correlations between Hourly Weather and Disruptions', fontsize=16)
+ax3.set_xlabel('Disruption Type')
+ax3.set_ylabel('Weather Variables')
+
+
+# Create a heatmap with the p-values related to the daily level correlations
+ax4 = axs[3]
+sns.heatmap(
+    pval_matrix_day,
+    annot=True,
+    fmt=".3f",
+    cmap='viridis_r',
+    linewidths=0.5,
+    ax=ax4
+)
+ax4.set_title('P-values for Correlations between Daily Weather and Disruptions', fontsize=16)
+ax4.set_xlabel('Disruption Type')
+ax4.set_ylabel('Weather Variables')
+
+
+# Create a heatmap which shows the correlations with p-value < 0.05 related to the hourly level correlations
+mask = pval_matrix_hour >= 0.05  # True for non-significant
+ax5 = axs[4]
+sns.heatmap(
+    corr_sub_hour,
+    annot=True,
+    fmt=".2f",
+    cmap='coolwarm',
+    linewidths=0.5,
+    mask=mask,
+    ax=ax5
+)
+ax5.set_title('Statistically Significant Correlations (p < 0.05)', fontsize=16)
+ax5.set_xlabel('Disruption Type')
+ax5.set_ylabel('Weather Variables')
+
+
+# Create a heatmap which shows the correlations with p-value < 0.05 related to the daily level correlations
+mask = pval_matrix_day >= 0.05  # True for non-significant
+ax6 = axs[5]
+sns.heatmap(
+    corr_sub_day,
+    annot=True,
+    fmt=".2f",
+    cmap='coolwarm',
+    linewidths=0.5,
+    mask=mask,
+    ax=ax6
+)
+ax6.set_title('Statistically Significant Correlations (p < 0.05)', fontsize=16)
+ax6.set_xlabel('Disruption Type')
+ax6.set_ylabel('Weather Variables')
+
+
+# Final layout and display
 plt.tight_layout()
 plt.show()

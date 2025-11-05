@@ -22,3 +22,14 @@ This repository contains:
 Research questions and explanation/analysis of the project in Jupyter notebook
 
 - Python code files for filtering, analysis and plots
+
+In order to run the project, the following packages need to be installed. 
+When these are installed, the "run all" button in the notebook can be used. 
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- plotly
+- geopy
+- scikit-learn
+- scipy

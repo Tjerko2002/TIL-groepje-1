@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import spearmanr
 
-#########################################################################
+
 ## Correlations and p-values per hour 
-#########################################################################
 
 # Loading weather data
 df_weather = pd.read_csv('data/df_weather_2024.csv')
@@ -94,10 +93,8 @@ for w in weather_cols:
         pval_matrix_hour.loc[w, d] = p
 
 
-#########################################################################
-## Correlations and p-values per day 
-#########################################################################
 
+## Correlations and p-values per day 
 
 # Load and prepare weather data
 df_weather = pd.read_csv('data/df_weather_2024.csv')
@@ -176,9 +173,8 @@ for w in weather_cols:
         pval_matrix_day.loc[w, d] = p
 
 
-#########################################################################
+
 ## Correlation and p-value plots
-#########################################################################
 
 # Six figures showing the correlations, the corresponding p-values and the correlations with p-values < 0.05 in heatmaps for both hourly and daily level comparisons.
 fig, axs = plt.subplots(3, 2, figsize=(36, 24))

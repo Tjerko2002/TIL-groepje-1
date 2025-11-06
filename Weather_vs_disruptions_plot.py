@@ -24,28 +24,13 @@ df_weather['block_hour'] = df_weather['datetime'].dt.floor('h')
 
 # Step 2: Load and filter disruptions data
 
-df_disruptions = pd.read_csv('data/disruptions_filtered_top15_causes.csv')
+df_disruptions = pd.read_csv(r'data\disruptions_filtered_selected_causes.csv')
 df_disruptions['start_time'] = pd.to_datetime(df_disruptions['start_time'])
 df_disruptions['end_time'] = pd.to_datetime(df_disruptions['end_time'], errors='coerce')
 
 # Create hourly block
 df_disruptions['block_hour'] = df_disruptions['start_time'].dt.floor('h')
 
-# Filter for weather-sensitive causes
-included_causes = [
-    'an object in the overhead wires',
-    'broken down train',
-    'demaged railway bridge',
-    'defective railway track'
-    'defective point',
-    'hinderence on the railway',
-    'level crossing failure',
-    'signal failure',
-    
-]
-df_disruptions = df_disruptions[
-    df_disruptions['cause_en'].str.lower().isin(included_causes)
-]
 
 # Aggregate disruptions per hour
 df_disruption_hour = (
@@ -101,8 +86,7 @@ merged_hour = merged_hour[
     (merged_hour['block_hour'].dt.hour >= 6) &
     (merged_hour['block_hour'].dt.hour <= 22)
 ]
-print("\nHourly scenario distribution:")
-print(merged_hour['weather_category_hour'].value_counts())
+
 
 agg_hour = (
     merged_hour
@@ -114,17 +98,9 @@ agg_hour = (
     .reset_index()
 )
 
-print("\nAverage disruptions per hourly weather category:")
-print(agg_hour)
-
-
-
-merged_hour.to_csv('data/merged_hour.csv')
-print("merged_hour saved to data/merged_hour.csv")
-
 # Step 6: Plot hourly disruptions per category
 
-order_hour = ['Stormy hour', 'Neutral hour', 'Very cold hour', 'Heat hour', 'Other hour']
+order_hour = ['Stormy hour', 'Neutral hour', 'Cold or snowy hour', 'Heat hour', 'Other hour']
 
 
 

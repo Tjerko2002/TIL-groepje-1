@@ -4,8 +4,8 @@ import os
 import plotly.graph_objects as go # Import graph_objects
 
 # 1. Load and Prepare Data
-
 df_stations = pd.read_csv(os.path.join(os.getcwd(),r"data\df_weatherstations_locations.csv"))
+
 
 # Load train station data
 filename = 'data/stations-2023-09.csv'
@@ -53,5 +53,5 @@ fig.update_layout(
     margin=dict(r=0, t=40, l=0, b=0),
     legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
 )
-#4. Show the Figure
+# 4. Show the Figure
 fig.show()

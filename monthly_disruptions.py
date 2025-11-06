@@ -1,8 +1,7 @@
-"""This file produces bar charts of the number of disruptions per month, together with a line that shows the corresponding weather data per month throughout the year """
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+"""This file produces bar charts of the number of disruptions per month, together with a line that shows the corresponding weather data per month throughout the year """
 
 # read file with potential weather related train disruptions within circle
 df_circle_disruptions = pd.read_csv("data/disruptions_filtered_selected_causes.csv")
@@ -19,9 +18,6 @@ monthly_count = (
     .rename(columns={"start_time": "month_period"})    # Changes the column name to month_period
 )
 
-# Test if the file gives the wanted output
-#print(monthly_count)
-
 # Convert the datetime which consists of periods back to timestamps to be able to plot later on.
 monthly_count["month"] = monthly_count["month_period"].dt.to_timestamp()
 
@@ -35,9 +31,6 @@ monthly_minutes = (
     .rename(columns={"start_time": "month_period"})    # Changes the column name to month_period
 )
 
-# Test if the file gives the wanted output
-# print(monthly_minutes)
-
 # Convert the datetime which consists of periods back to timestamps to be able to plot later on.
 monthly_minutes["month"] = monthly_minutes["month_period"].dt.to_timestamp()
 
@@ -48,7 +41,6 @@ monthly_minutes["month"] = monthly_minutes["month_period"].dt.to_timestamp()
 # The data file of the weather data from the five stations is read and checked
 file_path = os.path.join(os.getcwd(),r"data\df_weather_2024.csv")
 weather_data = pd.read_csv(file_path)
-# print(weather_data)
 
 # HH = 24 is changed to HH = 0 for the next day, because 24 at the end is not a valid datetime string and therefore produces a ValueError if not altered. 
 mask = weather_data["HH"] == 24

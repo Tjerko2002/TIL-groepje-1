@@ -43,5 +43,3 @@ print(statcause_count_filtered)
 # Export the filtered dataset
 output_path = os.path.join(os.getcwd(), "data", "disruptions_filtered_selected_causes.csv")
 df_filtered.to_csv(output_path, index=False, encoding="utf-8")
-
-print(f"\nFiltered dataset saved to: {output_path}")
